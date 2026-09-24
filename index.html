@@ -1,65 +1,718 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Vehículos en Venta</title>
+
 <style>
-:root{--bg:#f5f5f3;--ink:#151515;--muted:#6f6f6f;--card:#fff;--line:#e8e8e5;--accent:#111}
-*{box-sizing:border-box} body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
-header{padding:42px 20px 26px;text-align:center;background:#fff;border-bottom:1px solid var(--line)}
-header h1{margin:0;font-size:30px;letter-spacing:-.7px} header p{margin:9px 0 0;color:var(--muted);font-size:14px}
-.wrap{max-width:1100px;margin:auto;padding:26px 16px 70px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:22px}
-.card{background:var(--card);border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:0 7px 25px rgba(0,0,0,.05)}
-.hero{position:relative;aspect-ratio:4/3;background:#ddd;overflow:hidden}.hero img{width:100%;height:100%;object-fit:cover}
-.info{padding:18px}.year{color:var(--muted);font-size:13px;text-transform:uppercase;letter-spacing:1px}.name{font-size:22px;font-weight:700;margin:4px 0 12px}.price{font-size:25px;font-weight:800}.details{display:flex;justify-content:space-between;gap:12px;border-top:1px solid var(--line);margin-top:14px;padding-top:13px;color:#555;font-size:14px}
-.btn{display:block;text-align:center;margin-top:16px;background:#111;color:#fff;text-decoration:none;padding:13px 15px;border-radius:12px;font-weight:700}
-.gallery{display:none;padding:0 18px 18px}.gallery.open{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.gallery img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:9px}
-.more{margin-top:9px;width:100%;background:#f0f0ed;border:0;padding:11px;border-radius:10px;font-weight:600;cursor:pointer}
-footer{text-align:center;color:var(--muted);font-size:13px;padding:28px 10px;border-top:1px solid var(--line);background:#fff}
-@media(max-width:600px){header{padding-top:30px}.grid{grid-template-columns:1fr}.gallery.open{grid-template-columns:repeat(2,1fr)}}
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f4f4f2;
+  color: #151515;
+}
+
+header {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 45px 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 34px;
+  letter-spacing: -0.5px;
+}
+
+header p {
+  margin: 10px 0 0;
+  color: #ccc;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 35px 18px 60px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+  gap: 25px;
+}
+
+.card {
+  background: white;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
+}
+
+.cover {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+}
+
+.info {
+  padding: 20px;
+}
+
+.year {
+  color: #777;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.name {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 5px 0 16px;
+}
+
+.data {
+  border-top: 1px solid #eee;
+  padding-top: 13px;
+  line-height: 1.9;
+  color: #444;
+  font-size: 15px;
+}
+
+.data strong {
+  color: #111;
+}
+
+.price {
+  font-size: 27px;
+  font-weight: bold;
+  margin-top: 14px;
+}
+
+.whatsapp {
+  display: block;
+  text-align: center;
+  background: #111;
+  color: white;
+  text-decoration: none;
+  padding: 14px;
+  border-radius: 10px;
+  margin-top: 18px;
+  font-weight: bold;
+}
+
+.gallery-button {
+  width: 100%;
+  border: none;
+  background: #ededeb;
+  padding: 12px;
+  margin-top: 10px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.gallery {
+  display: none;
+  padding: 0 18px 18px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.gallery.active {
+  display: grid;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+footer {
+  background: #111;
+  color: #ccc;
+  text-align: center;
+  padding: 30px 15px;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  header h1 {
+    font-size: 28px;
+  }
+
+  .cover {
+    height: 220px;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header>
-<h1>Vehículos en Venta</h1>
-<p>Unidades disponibles · Información y fotografías</p>
+  <h1>Vehículos en Venta</h1>
+  <p>Consulta disponibilidad e información de cada unidad</p>
 </header>
-<main class="wrap">
+
+<div class="container">
+
 <div class="grid">
 
-<article class="card">
-<div class="hero"><img src="images/picanto2024_2.jpeg" alt="Kia Picanto LX 2024"></div>
-<div class="info"><div class="year">2024</div><div class="name">Kia Picanto LX</div><div class="price">US$11,900</div>
-<div class="details"><span>47,393 km</span><span>WhatsApp 829-521-0668</span></div>
-<a class="btn" href="https://wa.me/18295210668?text=Hola%2C%20me%20interesa%20el%20Kia%20Picanto%20LX%202024." target="_blank">Consultar por WhatsApp</a>
-<button class="more" onclick="toggle('g24',this)">Ver fotografías</button></div>
-<div id="g24" class="gallery">
-<img src="images/picanto2024_1.jpeg"><img src="images/picanto2024_2.jpeg"><img src="images/picanto2024_3.jpeg"><img src="images/picanto2024_4.jpeg"><img src="images/picanto2024_5.jpeg"><img src="images/picanto2024_6.jpeg">
-</div></article>
+<!-- ==================== AUTO 1 ==================== -->
 
-<article class="card">
-<div class="hero"><img src="images/picanto2023_1.jpeg" alt="Kia Picanto LX 2023"></div>
-<div class="info"><div class="year">2023</div><div class="name">Kia Picanto LX</div><div class="price">US$10,900</div>
-<div class="details"><span>47,994 km</span><span>WhatsApp 829-521-0668</span></div>
-<a class="btn" href="https://wa.me/18295210668?text=Hola%2C%20me%20interesa%20el%20Kia%20Picanto%20LX%202023." target="_blank">Consultar por WhatsApp</a>
-<button class="more" onclick="toggle('g23',this)">Ver fotografías</button></div>
-<div id="g23" class="gallery">
-<img src="images/picanto2023_1.jpeg"><img src="images/picanto2023_2.jpeg"><img src="images/picanto2023_3.jpeg"><img src="images/picanto2023_4.jpeg"><img src="images/picanto2023_5.jpeg"><img src="images/picanto2023_6.jpeg"><img src="images/picanto2023_7.jpeg">
-</div></article>
+<div class="card">
 
-<article class="card">
-<div class="hero"><img src="images/grandcherokee_1.jpeg" alt="Jeep Grand Cherokee LMT L 2022"></div>
-<div class="info"><div class="year">2022</div><div class="name">Jeep Grand Cherokee LMT L</div><div class="price">US$37,900</div>
-<div class="details"><span>101,220 km</span><span>WhatsApp 829-521-0668</span></div>
-<a class="btn" href="https://wa.me/18295210668?text=Hola%2C%20me%20interesa%20la%20Jeep%20Grand%20Cherokee%20LMT%20L%202022." target="_blank">Consultar por WhatsApp</a>
-</div></article>
+<img class="cover" src="images/auto-1/auto-1-foto-1.jpeg" alt="KIA Picanto LX 2025">
+
+<div class="info">
+
+<div class="year">2025</div>
+
+<div class="name">KIA Picanto LX</div>
+
+<div class="data">
+
+<strong>Marca:</strong> KIA<br>
+<strong>Modelo:</strong> Picanto LX<br>
+<strong>Año:</strong> 2025<br>
+<strong>Kilometraje:</strong> 10,450 km
+
+<div class="price">US$12,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
 
 </div>
-</main>
-<footer>Contacto: 829-521-0668 · Todos los vehículos comparten el mismo WhatsApp.</footer>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668?text=Hola%2C%20me%20interesa%20el%20KIA%20Picanto%20LX%202025%20de%2010%2C450%20km."
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+<button class="gallery-button" onclick="showGallery('gallery1',this)">
+Ver fotografías
+</button>
+
+</div>
+
+<div id="gallery1" class="gallery">
+
+<img src="images/auto-1/auto-1-foto-1.jpeg">
+<img src="images/auto-1/auto-1-foto-2.jpeg">
+<img src="images/auto-1/auto-1-foto-3.jpeg">
+<img src="images/auto-1/auto-1-foto-4.jpeg">
+<img src="images/auto-1/auto-1-foto-5.jpeg">
+<img src="images/auto-1/auto-1-foto-6.jpeg">
+<img src="images/auto-1/auto-1-foto-7.jpeg">
+<img src="images/auto-1/auto-1-foto-8.jpeg">
+<img src="images/auto-1/auto-1-foto-9.jpeg">
+<img src="images/auto-1/auto-1-foto-10.jpeg">
+
+</div>
+</div>
+
+
+<!-- ==================== AUTO 2 ==================== -->
+
+<div class="card">
+
+<img class="cover" src="images/auto-2/auto-2-foto-1.jpeg" alt="KIA Picanto LX 2025">
+
+<div class="info">
+
+<div class="year">2025</div>
+
+<div class="name">KIA Picanto LX</div>
+
+<div class="data">
+
+<strong>Marca:</strong> KIA<br>
+<strong>Modelo:</strong> Picanto LX<br>
+<strong>Año:</strong> 2025<br>
+<strong>Kilometraje:</strong> 44,724 km
+
+<div class="price">US$12,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668?text=Hola%2C%20me%20interesa%20el%20KIA%20Picanto%20LX%202025."
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+<button class="gallery-button" onclick="showGallery('gallery2',this)">
+Ver fotografías
+</button>
+
+</div>
+
+<div id="gallery2" class="gallery">
+
+<img src="images/auto-2/auto-2-foto-1.jpeg">
+<img src="images/auto-2/auto-2-foto-2.jpeg">
+<img src="images/auto-2/auto-2-foto-3.jpeg">
+<img src="images/auto-2/auto-2-foto-4.jpeg">
+<img src="images/auto-2/auto-2-foto-5.jpeg">
+<img src="images/auto-2/auto-2-foto-6.jpeg">
+<img src="images/auto-2/auto-2-foto-7.jpeg">
+<img src="images/auto-2/auto-2-foto-8.jpeg">
+<img src="images/auto-2/auto-2-foto-9.jpeg">
+<img src="images/auto-2/auto-2-foto-10.jpeg">
+
+</div>
+</div>
+
+
+<!-- ==================== AUTO 3 ==================== -->
+
+<div class="card">
+
+<img class="cover" src="images/auto-3/auto-3-foto-1.jpeg" alt="KIA Picanto LX 2025">
+
+<div class="info">
+
+<div class="year">2025</div>
+
+<div class="name">KIA Picanto LX</div>
+
+<div class="data">
+
+<strong>Marca:</strong> KIA<br>
+<strong>Modelo:</strong> Picanto LX<br>
+<strong>Año:</strong> 2025<br>
+<strong>Kilometraje:</strong> 41,732 km
+
+<div class="price">US$12,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668?text=Hola%2C%20me%20interesa%20el%20KIA%20Picanto%20LX%202025."
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+<button class="gallery-button" onclick="showGallery('gallery3',this)">
+Ver fotografías
+</button>
+
+</div>
+
+<div id="gallery3" class="gallery">
+
+<img src="images/auto-3/auto-3-foto-1.jpeg">
+<img src="images/auto-3/auto-3-foto-2.jpeg">
+<img src="images/auto-3/auto-3-foto-3.jpeg">
+<img src="images/auto-3/auto-3-foto-4.jpeg">
+<img src="images/auto-3/auto-3-foto-5.jpeg">
+<img src="images/auto-3/auto-3-foto-6.jpeg">
+<img src="images/auto-3/auto-3-foto-7.jpeg">
+<img src="images/auto-3/auto-3-foto-8.jpeg">
+<img src="images/auto-3/auto-3-foto-9.jpeg">
+
+</div>
+</div>
+
+
+<!-- ==================== AUTO 4 ==================== -->
+
+<div class="card">
+
+<img class="cover" src="images/auto-4/auto-4-foto-1.jpeg" alt="KIA Picanto LX 2025">
+
+<div class="info">
+
+<div class="year">2025</div>
+
+<div class="name">KIA Picanto LX</div>
+
+<div class="data">
+
+<strong>Marca:</strong> KIA<br>
+<strong>Modelo:</strong> Picanto LX<br>
+<strong>Año:</strong> 2025<br>
+<strong>Kilometraje:</strong> 17,618 km
+
+<div class="price">US$12,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668"
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+<button class="gallery-button" onclick="showGallery('gallery4',this)">
+Ver fotografías
+</button>
+
+</div>
+
+<div id="gallery4" class="gallery">
+
+<img src="images/auto-4/auto-4-foto-1.jpeg">
+<img src="images/auto-4/auto-4-foto-2.jpeg">
+<img src="images/auto-4/auto-4-foto-3.jpeg">
+<img src="images/auto-4/auto-4-foto-4.jpeg">
+<img src="images/auto-4/auto-4-foto-5.jpeg">
+<img src="images/auto-4/auto-4-foto-6.jpeg">
+<img src="images/auto-4/auto-4-foto-7.jpeg">
+<img src="images/auto-4/auto-4-foto-8.jpeg">
+<img src="images/auto-4/auto-4-foto-9.jpeg">
+<img src="images/auto-4/auto-4-foto-10.jpeg">
+
+</div>
+</div>
+
+
+<!-- ==================== AUTO 5 ==================== -->
+
+<div class="card">
+
+<img class="cover" src="images/auto-5/auto-5-foto-1.jpeg" alt="KIA Picanto LX 2025">
+
+<div class="info">
+
+<div class="year">2025</div>
+
+<div class="name">KIA Picanto LX</div>
+
+<div class="data">
+
+<strong>Marca:</strong> KIA<br>
+<strong>Modelo:</strong> Picanto LX<br>
+<strong>Año:</strong> 2025<br>
+<strong>Kilometraje:</strong> 63,971 km
+
+<div class="price">US$12,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668"
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+<button class="gallery-button" onclick="showGallery('gallery5',this)">
+Ver fotografías
+</button>
+
+</div>
+
+<div id="gallery5" class="gallery">
+
+<img src="images/auto-5/auto-5-foto-1.jpeg">
+<img src="images/auto-5/auto-5-foto-2.jpeg">
+<img src="images/auto-5/auto-5-foto-3.jpeg">
+<img src="images/auto-5/auto-5-foto-4.jpeg">
+<img src="images/auto-5/auto-5-foto-5.jpeg">
+<img src="images/auto-5/auto-5-foto-6.jpeg">
+<img src="images/auto-5/auto-5-foto-7.jpeg">
+<img src="images/auto-5/auto-5-foto-8.jpeg">
+<img src="images/auto-5/auto-5-foto-9.jpeg">
+<img src="images/auto-5/auto-5-foto-10.jpeg">
+
+</div>
+</div>
+
+
+<!-- ==================== AUTO 6 ==================== -->
+
+<div class="card">
+
+<img class="cover" src="images/auto-6/auto-6-foto-1.jpeg" alt="KIA Picanto LX 2025">
+
+<div class="info">
+
+<div class="year">2025</div>
+
+<div class="name">KIA Picanto LX</div>
+
+<div class="data">
+
+<strong>Marca:</strong> KIA<br>
+<strong>Modelo:</strong> Picanto LX<br>
+<strong>Año:</strong> 2025<br>
+<strong>Kilometraje:</strong> 63,306 km
+
+<div class="price">US$12,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668"
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+<button class="gallery-button" onclick="showGallery('gallery6',this)">
+Ver fotografías
+</button>
+
+</div>
+
+<div id="gallery6" class="gallery">
+
+<img src="images/auto-6/auto-6-foto-1.jpeg">
+<img src="images/auto-6/auto-6-foto-2.jpeg">
+<img src="images/auto-6/auto-6-foto-3.jpeg">
+<img src="images/auto-6/auto-6-foto-4.jpeg">
+<img src="images/auto-6/auto-6-foto-5.jpeg">
+<img src="images/auto-6/auto-6-foto-6.jpeg">
+<img src="images/auto-6/auto-6-foto-7.jpeg">
+<img src="images/auto-6/auto-6-foto-8.jpeg">
+<img src="images/auto-6/auto-6-foto-9.jpeg">
+<img src="images/auto-6/auto-6-foto-10.jpeg">
+
+</div>
+</div>
+
+
+<!-- ==================== AUTO 7 ==================== -->
+
+<div class="card">
+
+<img class="cover" src="images/auto-7/auto-7-foto-1.jpeg" alt="KIA Picanto LX 2025">
+
+<div class="info">
+
+<div class="year">2025</div>
+
+<div class="name">KIA Picanto LX</div>
+
+<div class="data">
+
+<strong>Marca:</strong> KIA<br>
+<strong>Modelo:</strong> Picanto LX<br>
+<strong>Año:</strong> 2025<br>
+<strong>Kilometraje:</strong> 36,570 km
+
+<div class="price">US$12,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668"
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+<button class="gallery-button" onclick="showGallery('gallery7',this)">
+Ver fotografías
+</button>
+
+</div>
+
+<div id="gallery7" class="gallery">
+
+<img src="images/auto-7/auto-7-foto-1.jpeg">
+<img src="images/auto-7/auto-7-foto-2.jpeg">
+<img src="images/auto-7/auto-7-foto-3.jpeg">
+<img src="images/auto-7/auto-7-foto-4.jpeg">
+<img src="images/auto-7/auto-7-foto-5.jpeg">
+<img src="images/auto-7/auto-7-foto-6.jpeg">
+<img src="images/auto-7/auto-7-foto-7.jpeg">
+<img src="images/auto-7/auto-7-foto-8.jpeg">
+<img src="images/auto-7/auto-7-foto-9.jpeg">
+<img src="images/auto-7/auto-7-foto-10.jpeg">
+
+</div>
+</div>
+
+
+<!-- ==================== AUTO 8 ==================== -->
+
+<div class="card">
+
+<img class="cover" src="images/auto-8/auto-8-foto-1.jpeg" alt="KIA Picanto LX 2024">
+
+<div class="info">
+
+<div class="year">2024</div>
+
+<div class="name">KIA Picanto LX</div>
+
+<div class="data">
+
+<strong>Marca:</strong> KIA<br>
+<strong>Modelo:</strong> Picanto LX<br>
+<strong>Año:</strong> 2024<br>
+<strong>Kilometraje:</strong> 47,393 km
+
+<div class="price">US$11,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668"
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+<button class="gallery-button" onclick="showGallery('gallery8',this)">
+Ver fotografías
+</button>
+
+</div>
+
+<div id="gallery8" class="gallery">
+
+<img src="images/auto-8/auto-8-foto-1.jpeg">
+<img src="images/auto-8/auto-8-foto-2.jpeg">
+<img src="images/auto-8/auto-8-foto-3.jpeg">
+<img src="images/auto-8/auto-8-foto-4.jpeg">
+<img src="images/auto-8/auto-8-foto-5.jpeg">
+<img src="images/auto-8/auto-8-foto-6.jpeg">
+<img src="images/auto-8/auto-8-foto-7.jpeg">
+<img src="images/auto-8/auto-8-foto-8.jpeg">
+<img src="images/auto-8/auto-8-foto-9.jpeg">
+<img src="images/auto-8/auto-8-foto-10.jpeg">
+
+</div>
+</div>
+
+
+<!-- ==================== AUTO 9 ==================== -->
+
+<div class="card">
+
+<img class="cover" src="images/auto-9/auto-9-foto-1.jpeg" alt="KIA Picanto LX 2023">
+
+<div class="info">
+
+<div class="year">2023</div>
+
+<div class="name">KIA Picanto LX</div>
+
+<div class="data">
+
+<strong>Marca:</strong> KIA<br>
+<strong>Modelo:</strong> Picanto LX<br>
+<strong>Año:</strong> 2023<br>
+<strong>Kilometraje:</strong> 47,994 km
+
+<div class="price">US$10,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668"
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+<button class="gallery-button" onclick="showGallery('gallery9',this)">
+Ver fotografías
+</button>
+
+</div>
+
+<div id="gallery9" class="gallery">
+
+<img src="images/auto-9/auto-9-foto-1.jpeg">
+<img src="images/auto-9/auto-9-foto-2.jpeg">
+<img src="images/auto-9/auto-9-foto-3.jpeg">
+<img src="images/auto-9/auto-9-foto-4.jpeg">
+<img src="images/auto-9/auto-9-foto-5.jpeg">
+<img src="images/auto-9/auto-9-foto-6.jpeg">
+<img src="images/auto-9/auto-9-foto-7.jpeg">
+<img src="images/auto-9/auto-9-foto-8.jpeg">
+<img src="images/auto-9/auto-9-foto-9.jpeg">
+<img src="images/auto-9/auto-9-foto-10.jpeg">
+
+</div>
+</div>
+
+
+<!-- ==================== AUTO 10 ==================== -->
+
+<div class="card">
+
+<img class="cover" src="images/auto-10/auto-10-foto-1.jpeg" alt="Jeep Grand Cherokee LMT L 2022">
+
+<div class="info">
+
+<div class="year">2022</div>
+
+<div class="name">Grand Cherokee LMT L</div>
+
+<div class="data">
+
+<strong>Marca:</strong> Jeep<br>
+<strong>Modelo:</strong> Grand Cherokee LMT L<br>
+<strong>Año:</strong> 2022<br>
+<strong>Kilometraje:</strong> 101,220 km
+
+<div class="price">US$37,900</div>
+
+<strong>WhatsApp:</strong> 829-521-0668
+
+</div>
+
+<a class="whatsapp"
+href="https://wa.me/18295210668"
+target="_blank">
+Consultar por WhatsApp
+</a>
+
+</div>
+</div>
+
+</div>
+</div>
+
+<footer>
+WhatsApp: 829-521-0668
+</footer>
+
 <script>
-function toggle(id,b){const g=document.getElementById(id);g.classList.toggle('open');b.textContent=g.classList.contains('open')?'Ocultar fotografías':'Ver fotografías'}
+function showGallery(id, button) {
+
+  const gallery = document.getElementById(id);
+
+  if (gallery.classList.contains("active")) {
+
+    gallery.classList.remove("active");
+    button.textContent = "Ver fotografías";
+
+  } else {
+
+    gallery.classList.add("active");
+    button.textContent = "Ocultar fotografías";
+
+  }
+}
 </script>
-</body></html>
+
+</body>
+</html>
